@@ -1,0 +1,1464 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     58957,       1456]
+NotebookOptionsPosition[     55344,       1389]
+NotebookOutlinePosition[     55769,       1406]
+CellTagsIndexPosition[     55726,       1403]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[{
+ StyleBox[" Visualization of Taylor Approximation (Expansion)",
+  FontSize->48,
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["\n",
+  FontSize->48],
+ StyleBox[" ",
+  FontSize->48,
+  FontColor->GrayLevel[0.5]],
+ StyleBox[" ",
+  FontSize->48,
+  FontColor->RGBColor[1, 0.5, 0]],
+ StyleBox["CMSC389W -- Fall2019 -- Project1      Sijing Yu    Oct. 21  2019",
+  FontSize->24,
+  FontColor->RGBColor[1, 0.5, 0]]
+}], "Title",
+ CellChangeTimes->{{3.7806076097169905`*^9, 3.7806076134923124`*^9}, {
+  3.780607986027782*^9, 
+  3.7806079980603747`*^9}},ExpressionUUID->"e4a487ba-7f19-43b8-81cd-\
+2c9c3ce3c7a3"],
+
+Cell[CellGroupData[{
+
+Cell["    1. Basics", "Section",
+ CellChangeTimes->{{3.7806085449605284`*^9, 
+  3.7806085519469986`*^9}},ExpressionUUID->"2955d739-2d7f-404e-b768-\
+f58ed8e47f2a"],
+
+Cell[TextData[{
+ StyleBox["The ",
+  FontSize->16],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["N", "th"], TraditionalForm]],
+  FontSize->16,ExpressionUUID->"d4f1cf1b-bcaf-4a69-ba05-73772200d0d9"],
+ StyleBox[" order Taylor Polynomial of a function f(n) centered at a is ",
+  FontSize->16],
+ "\n         ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", 
+    RowBox[{
+     UnderoverscriptBox["\[Sum]", 
+      RowBox[{"k", "=", "0"}], "N"], 
+     RowBox[{
+      SuperscriptBox["f", 
+       RowBox[{"(", "k", ")"}]], "(", "a", ")"}]}]}], TraditionalForm]],
+  FontSize->24,ExpressionUUID->"30758923-e099-4796-aa75-c95210cda6a9"],
+ StyleBox[" ",
+  FontSize->24],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"k", "!"}]], 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"x", "-", "a"}], ")"}], "k"]}], TraditionalForm]],
+  FontSize->24,ExpressionUUID->"0fece521-d239-4f11-8448-c921e5744cb8"],
+ StyleBox["  =  ",
+  FontSize->24],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["f", 
+     RowBox[{"(", "0", ")"}]], "(", "a", ")"}], TraditionalForm]],
+  FontSize->24,ExpressionUUID->"dbec1a0b-36fc-46e9-ac3b-22289c2ff58c"],
+ StyleBox[" + ",
+  FontSize->24],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["f", 
+     RowBox[{"(", "a", ")"}]], "(", "a", ")"}], TraditionalForm]],
+  FontSize->24,ExpressionUUID->"542af447-5777-4067-a9cb-d1cffa7e684e"],
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{"(", 
+     RowBox[{"x", "-", "a"}], ")"}], 
+    RowBox[{"1", "!"}]], TraditionalForm]],
+  FontSize->24,ExpressionUUID->"050de2c7-fe19-41ee-8146-d425c5b07122"],
+ StyleBox[" + ",
+  FontSize->24],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["f", 
+     RowBox[{"(", "2", ")"}]], "(", "a", ")"}], TraditionalForm]],
+  FontSize->24,ExpressionUUID->"09261b98-1728-49e9-a8ea-19a6ab73cd28"],
+ StyleBox[" ",
+  FontSize->24],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"2", "!"}]], 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"x", "-", "a"}], ")"}], "2"]}], TraditionalForm]],
+  FontSize->24,ExpressionUUID->"25004c90-7fd6-42b9-af08-9fa36dc5ebe4"],
+ StyleBox[" + ... + ",
+  FontSize->24],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["f", 
+      RowBox[{"(", "N", ")"}]], "(", "a", ")"}], 
+    RowBox[{
+     FractionBox["1", 
+      RowBox[{"N", "!"}]], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"x", "-", "a"}], ")"}], "N"]}]}], TraditionalForm]],
+  FontSize->24,ExpressionUUID->"e1571bd9-3d34-4d91-a235-c139a7686688"],
+ "\n",
+ StyleBox["When a = 0, Taylor Series become Maclaurin Series: ",
+  FontSize->16],
+ "\n          ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", 
+    RowBox[{
+     UnderoverscriptBox["\[Sum]", 
+      RowBox[{"k", "=", "0"}], "N"], 
+     RowBox[{
+      SuperscriptBox["f", 
+       RowBox[{"(", "k", ")"}]], "(", "0", ")"}]}]}], TraditionalForm]],
+  FontSize->24,ExpressionUUID->"12b720a7-7110-4bb4-bd2d-129a7f14588d"],
+ StyleBox[" ",
+  FontSize->24],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"k", "!"}]], 
+    SuperscriptBox["x", "k"]}], TraditionalForm]],
+  FontSize->24,ExpressionUUID->"3a89d189-2e11-4cea-a575-d74104e88869"],
+ StyleBox["  =  ",
+  FontSize->24],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["f", 
+    RowBox[{"(", "0", ")"}]], TraditionalForm]],
+  FontSize->24,ExpressionUUID->"cebd22de-f491-4e08-b573-4386fe13e07b"],
+ StyleBox["(0) + ",
+  FontSize->24],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["f", 
+    RowBox[{"(", "1", ")"}]], TraditionalForm]],
+  FontSize->24,ExpressionUUID->"f7856764-ecb3-43ac-8471-5235e51d5590"],
+ StyleBox["(0)",
+  FontSize->24],
+ Cell[BoxData[
+  FormBox[
+   FractionBox["x", 
+    RowBox[{"1", "!"}]], TraditionalForm]],
+  FontSize->24,ExpressionUUID->"90982227-08d8-40a1-992e-89bbf9767772"],
+ StyleBox[" + ",
+  FontSize->24],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["f", 
+     RowBox[{"(", "2", ")"}]], "(", "0", ")"}], TraditionalForm]],
+  FontSize->24,ExpressionUUID->"a5ef758e-8faa-4aca-8d52-707cbf5fc38c"],
+ StyleBox[" ",
+  FontSize->24],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"2", "!"}]], 
+    SuperscriptBox["x", "2"]}], TraditionalForm]],
+  FontSize->24,ExpressionUUID->"6df42281-854f-4dc9-beca-f97e2b3c8a66"],
+ StyleBox[" + ... + ",
+  FontSize->24],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["f", 
+      RowBox[{"(", "N", ")"}]], "(", "0", ")"}], 
+    RowBox[{
+     FractionBox["1", 
+      RowBox[{"N", "!"}]], 
+     SuperscriptBox["x", "N"]}]}], TraditionalForm]],
+  FontSize->24,ExpressionUUID->"7d45f538-bebe-414a-bcc4-153795ffc907"],
+ "\n",
+ StyleBox["We want to first show how it works visually and see if the \
+approximation using Taylor Expansion is the best ",
+  FontSize->16,
+  FontColor->GrayLevel[0]],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["n", "th"], TraditionalForm]],
+  FontSize->16,
+  FontColor->GrayLevel[0],ExpressionUUID->
+  "084b53f5-bc0e-45bd-8daa-70e31e565145"],
+ StyleBox[" degree polynomial approximation of the function. To achieve our \
+goal, first we construct functions to compute ",
+  FontSize->16,
+  FontColor->GrayLevel[0]],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["n", "th"], TraditionalForm]],
+  FontSize->16,
+  FontColor->GrayLevel[0],ExpressionUUID->
+  "d7c3a036-109b-4db6-8fbe-a8de35d1e535"],
+ StyleBox[" term of Taylor Expansion.  ",
+  FontSize->16,
+  FontColor->GrayLevel[0]]
+}], "Text",
+ CellChangeTimes->{{3.780607627283291*^9, 3.780607643436061*^9}, {
+  3.780607682002735*^9, 3.7806077295638475`*^9}, {3.780608382223349*^9, 
+  3.7806083832394457`*^9}, {3.7806084339568777`*^9, 3.7806084799355974`*^9}, {
+  3.780608514840178*^9, 3.7806085264653254`*^9}, {3.780608722517667*^9, 
+  3.7806087266190653`*^9}},ExpressionUUID->"49cb1325-b25f-4d0d-a607-\
+ed10a2525564"],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"\t", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"NthTaylor", "[", 
+      RowBox[{"f_", ",", "n_", ",", "a_"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"D", "[", 
+         RowBox[{
+          RowBox[{"f", "[", "x", "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"x", ",", "n"}], "}"}]}], "]"}], "/.", 
+        RowBox[{"x", "\[Rule]", "a"}]}], ")"}], "*", 
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"x", "-", "a"}], ")"}], "n"], "/", 
+       RowBox[{"Factorial", "[", "n", "]"}]}]}]}], ";"}]}],
+  FontColor->GrayLevel[0]]], "Input",
+ CellChangeTimes->{{3.780607761917283*^9, 3.7806077817154665`*^9}, {
+   3.7806078408364*^9, 3.7806078454784994`*^9}, {3.7806084824968357`*^9, 
+   3.7806084851945467`*^9}, {3.7806086577467413`*^9, 3.7806086587286863`*^9}, 
+   3.7806086953549786`*^9},
+ CellLabel->"In[1]:=",ExpressionUUID->"7fe24bb6-945e-4f08-ba44-a078cddafdd5"],
+
+Cell[TextData[{
+ StyleBox["Then we use the above function to compute ",
+  FontSize->16,
+  FontColor->GrayLevel[0]],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["n", "th"], TraditionalForm]],
+  FontSize->16,
+  FontColor->GrayLevel[0],ExpressionUUID->
+  "cae75ef3-af4c-4674-9dac-0964dd4320df"],
+ StyleBox[" order Taylor Series by recursion: ",
+  FontSize->16,
+  FontColor->GrayLevel[0]]
+}], "Text",
+ CellChangeTimes->{{3.780607792555026*^9, 3.78060786205678*^9}, {
+   3.7806079766860056`*^9, 3.7806080601860857`*^9}, 3.7806084374126835`*^9, 
+   3.7806084761593866`*^9},ExpressionUUID->"ce9d2f6f-9a77-4aef-9643-\
+160e1a3670aa"],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"\t", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"NthTaylorSeries", "[", 
+       RowBox[{"f_", ",", "n_", ",", "a_"}], "]"}], ":=", 
+      RowBox[{
+       RowBox[{"NthTaylorSeries", "[", 
+        RowBox[{"f", ",", 
+         RowBox[{"n", "-", "1"}], ",", "a"}], "]"}], "+", 
+       RowBox[{"NthTaylor", "[", 
+        RowBox[{"f", ",", "n", ",", "a"}], "]"}]}]}], ";"}], 
+    "\[IndentingNewLine]", "\t", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"NthTaylorSeries", "[", 
+       RowBox[{"f_", ",", "0", ",", "a_"}], "]"}], ":=", 
+      RowBox[{"NthTaylor", "[", 
+       RowBox[{"f", ",", "0", ",", "a"}], "]"}]}], ";"}]}]}],
+  FontColor->GrayLevel[0]]], "Input",
+ CellChangeTimes->{{3.7806081048804655`*^9, 3.7806081491193295`*^9}, {
+  3.7806084912274995`*^9, 3.7806084947835417`*^9}, {3.78060870042758*^9, 
+  3.7806087041605225`*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"af0695ab-2f51-43df-b7f0-02b271fa61a3"],
+
+Cell[TextData[{
+ StyleBox["By replacing a with 0, we get the ",
+  FontSize->16],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["n", "th"], TraditionalForm]],
+  FontSize->16,ExpressionUUID->"04d95492-10c7-47cc-957b-c70dec352b5a"],
+ StyleBox[" order Maclaurin Series, and similarly ",
+  FontSize->16],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["n", "th"], TraditionalForm]],
+  FontSize->16,ExpressionUUID->"559bbd2c-b1cd-43ee-b197-75c517d65104"],
+ StyleBox[" term of the Maclaurin Expansion:\t",
+  FontSize->16]
+}], "Text",
+ CellChangeTimes->{{3.7806081942022142`*^9, 3.7806082366726847`*^9}, {
+  3.780608269373479*^9, 3.7806083033933992`*^9}, {3.7807809845366497`*^9, 
+  3.7807809934396906`*^9}},ExpressionUUID->"0b56c496-c769-48da-8014-\
+fc678a1db635"],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"\t", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"NthMaclaurinSeries", "[", 
+       RowBox[{"f_", ",", "n_"}], "]"}], ":=", 
+      RowBox[{"NthTaylorSeries", "[", 
+       RowBox[{"f", ",", "n", ",", "0"}], "]"}]}], ";"}], 
+    "\[IndentingNewLine]", "\t", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"NthMaclaurin", "[", 
+       RowBox[{"f_", ",", "n_"}], "]"}], ":=", 
+      RowBox[{"NthTaylor", "[", 
+       RowBox[{"f", ",", "n", ",", "0"}], "]"}]}], ";"}]}]}],
+  FontColor->GrayLevel[0]]], "Input",
+ CellChangeTimes->{
+  3.7806082583282366`*^9, {3.7806083136339183`*^9, 3.7806083141116915`*^9}, {
+   3.7806084979738855`*^9, 3.7806085021178107`*^9}, {3.7806087068270755`*^9, 
+   3.780608710305105*^9}, {3.780612394281803*^9, 3.7806124096308203`*^9}, {
+   3.7806126704100847`*^9, 3.7806127050791454`*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"0a270b1d-8d48-4b5e-8fd8-3dc861298589"],
+
+Cell[TextData[{
+ "We can see how it exactly works here, change the function and the order to \
+see the expansion! \n",
+ StyleBox["If it doesn\[CloseCurlyQuote]t work, try evaluate all cells above!",
+  FontColor->RGBColor[1, 0, 0]]
+}], "Text",
+ CellChangeTimes->{{3.780612890149191*^9, 3.7806129048857746`*^9}, {
+  3.7806129456533947`*^9, 3.780612959059414*^9}, {3.7807679493468122`*^9, 
+  3.780767972068658*^9}, {3.780768027630002*^9, 3.7807680735424604`*^9}, {
+  3.780776656810457*^9, 3.780776661259308*^9}, {3.780780981040691*^9, 
+  3.7807809954296656`*^9}},ExpressionUUID->"6c67086c-95b3-4053-a7cf-\
+3e34ee494e68"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\t", 
+  StyleBox[
+   RowBox[{"Manipulate", "[", "  ", 
+    RowBox[{
+     RowBox[{"\"\<f[x] \[TildeTilde] \>\"", "  ", 
+      RowBox[{"Normal", " ", "[", 
+       RowBox[{"NthTaylorSeries", "[", 
+        RowBox[{"f", ",", " ", "o", ",", " ", "0"}], "]"}], "]"}]}], 
+     "\[IndentingNewLine]", "\t", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"f", ",", "Sin", ",", "\"\<Function\>\""}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Sin", " ", "\[Rule]", " ", "Sin"}], ",", 
+         RowBox[{"Cos", " ", "\[Rule]", "  ", "Cos"}], ",", 
+         RowBox[{"Tan", " ", "\[Rule]", " ", "Tan"}], ",", 
+         RowBox[{"Cot", " ", "\[Rule]", " ", "Cot"}], ",", " ", 
+         RowBox[{"Sec", " ", "\[Rule]", " ", "Sec"}], ",", 
+         RowBox[{"Csc", " ", "\[Rule]", " ", "Csc"}]}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"o", ",", "10", ",", "\"\<Order\>\""}], "}"}], ",", "1", ",", 
+       "50", ",", "1"}], "}"}]}], "]"}],
+   FontColor->GrayLevel[0]]}]], "Input",
+ CellChangeTimes->{{3.780612491187496*^9, 3.780612494165521*^9}, 
+   3.780612710148263*^9, 3.7806128754051433`*^9, {3.780612908500778*^9, 
+   3.780612921703083*^9}, {3.780613041648553*^9, 3.7806130638864174`*^9}, {
+   3.780759026261187*^9, 3.780759031562213*^9}, {3.7807683622427526`*^9, 
+   3.780768444664016*^9}, {3.7807693863577557`*^9, 3.7807694428312764`*^9}, {
+   3.7807695271792583`*^9, 3.780769570221702*^9}, {3.780769618820405*^9, 
+   3.7807696595973167`*^9}, {3.780778647890843*^9, 3.7807786521348333`*^9}, {
+   3.780778783692828*^9, 3.78077890617183*^9}, {3.780781001789689*^9, 
+   3.7807810144876814`*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"bb256ca7-390f-47e0-97ec-a0be6c697972"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`f$$ = Sin, $CellContext`o$$ = 10, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`f$$], Sin, "Function"}, {
+      Sin -> Sin, Cos -> Cos, Tan -> Tan, Cot -> Cot, Sec -> Sec, Csc -> 
+       Csc}}, {{
+       Hold[$CellContext`o$$], 10, "Order"}, 1, 50, 1}}, Typeset`size$$ = {
+    246.8, {11., 20.33}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`f$2384$$ = 
+    False, $CellContext`o$2385$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`f$$ = Sin, $CellContext`o$$ = 10}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`f$$, $CellContext`f$2384$$, False], 
+        Hold[$CellContext`o$$, $CellContext`o$2385$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> "f[x] \[TildeTilde] " Normal[
+         $CellContext`NthTaylorSeries[$CellContext`f$$, $CellContext`o$$, 0]],
+       "Specifications" :> {{{$CellContext`f$$, Sin, "Function"}, {
+         Sin -> Sin, Cos -> Cos, Tan -> Tan, Cot -> Cot, Sec -> Sec, Csc -> 
+          Csc}}, {{$CellContext`o$$, 10, "Order"}, 1, 50, 1}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{294., {70., 76.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.7806130062687416`*^9, {3.780613046893756*^9, 3.780613070085884*^9}, 
+   3.7807590347801733`*^9, {3.7807684158551917`*^9, 3.780768448651538*^9}, 
+   3.7807694763173723`*^9, {3.780769536034134*^9, 3.7807695743858185`*^9}, {
+   3.7807696106073675`*^9, 3.7807696642460723`*^9}, 3.78077005678568*^9, 
+   3.7807705141460056`*^9, 3.780776674486287*^9, {3.780778655114835*^9, 
+   3.7807786717368155`*^9}, 3.780778799851821*^9, {3.780778839153832*^9, 
+   3.780778874758791*^9}, 3.7807858715192604`*^9},
+ CellLabel->"Out[6]=",ExpressionUUID->"8e76a463-5b06-4fce-a603-697a8458276c"]
+}, Open  ]],
+
+Cell["Now, we have all we need as basics for the visualization.", "Text",
+ CellChangeTimes->{{3.780608616220995*^9, 3.780608641675665*^9}, 
+   3.7806087140836935`*^9, {3.78061296303636*^9, 
+   3.7806129633753586`*^9}},ExpressionUUID->"1b4bb76f-2497-4214-a94e-\
+3492c90852de"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["   2. Visualization of Taylor Approximation ", "Section",
+ CellChangeTimes->{{3.7806094474259605`*^9, 3.780609470537768*^9}, {
+  3.7806100316799874`*^9, 3.7806100331100054`*^9}, {3.7806105079054375`*^9, 
+  3.780610521107572*^9}, {3.7806119656321807`*^9, 
+  3.7806119660610476`*^9}},ExpressionUUID->"d3f67c7c-6043-4e77-aedf-\
+781fd7ddf375"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+1. Taylor Approximation with a = 0 for all kinds of common functions. \
+\>", "Subsection",
+ CellChangeTimes->{{3.7807813433607173`*^9, 
+  3.7807813671306925`*^9}},ExpressionUUID->"1c3032ed-9816-499c-96c8-\
+f466b3176e38"],
+
+Cell[TextData[StyleBox["We can first visualize the graph and the difference \
+of approximation when a = 0, which is a Maclaurin Series, with blue denotes \
+the approximation and green denotes the original graph. ",
+ FontSize->16]], "Text",
+ CellChangeTimes->{{3.7807685015592823`*^9, 3.780768524927993*^9}, {
+   3.7807685907909083`*^9, 3.7807686262627945`*^9}, 3.7807687390698566`*^9, {
+   3.780770526352561*^9, 3.780770538219705*^9}, {3.7807797725976887`*^9, 
+   3.780779804918663*^9}, {3.78078131889765*^9, 
+   3.7807813329466887`*^9}},ExpressionUUID->"d550c85c-798f-44fe-9081-\
+89b824a0f5d5"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\t", 
+  RowBox[{
+   StyleBox[
+    RowBox[{
+     RowBox[{
+      RowBox[{"Linear", "[", "x_", "]"}], " ", ":=", " ", 
+      RowBox[{"x", "+", "1"}]}], ";"}],
+    FontColor->GrayLevel[0]], 
+   StyleBox[" ",
+    FontColor->GrayLevel[0]], 
+   StyleBox["\[IndentingNewLine]",
+    FontColor->GrayLevel[0]], 
+   StyleBox["\t",
+    FontColor->GrayLevel[0]], 
+   StyleBox[
+    RowBox[{
+     RowBox[{
+      RowBox[{"Quad", "[", "x_", "]"}], ":=", 
+      RowBox[{
+       RowBox[{"2", " ", 
+        SuperscriptBox["x", "2"]}], "+", " ", 
+       RowBox[{"Linear", "[", "x", "]"}]}]}], ";"}],
+    FontColor->GrayLevel[0]], 
+   StyleBox["\[IndentingNewLine]",
+    FontColor->GrayLevel[0]], 
+   StyleBox["\t",
+    FontColor->GrayLevel[0]], 
+   StyleBox[
+    RowBox[{
+     RowBox[{"Cubic", "[", "x_", "]"}], " ", ":=", " ", 
+     RowBox[{
+      RowBox[{"3", 
+       SuperscriptBox["x", "3"]}], " ", "+", " ", 
+      RowBox[{"Quad", "[", "x", "]"}]}]}],
+    FontColor->GrayLevel[0]], 
+   StyleBox["\[IndentingNewLine]",
+    FontColor->GrayLevel[0]], 
+   StyleBox["\t",
+    FontColor->GrayLevel[0]], 
+   StyleBox[
+    RowBox[{
+     RowBox[{"Quartic", "[", "x_", "]"}], " ", ":=", " ", 
+     RowBox[{
+      RowBox[{"4", 
+       SuperscriptBox["x", "4"]}], "+", " ", 
+      RowBox[{"Cubic", "[", "x", "]"}]}]}],
+    FontColor->GrayLevel[0]], 
+   StyleBox["\[IndentingNewLine]",
+    FontColor->GrayLevel[0]], 
+   StyleBox["\t",
+    FontColor->GrayLevel[0]], 
+   StyleBox[
+    RowBox[{
+     RowBox[{"Quintic", "[", "x_", "]"}], " ", ":=", " ", 
+     RowBox[{
+      RowBox[{"5", 
+       SuperscriptBox["x", "5"]}], "+", " ", 
+      RowBox[{"Quartic", "[", "x", "]"}]}]}],
+    FontColor->GrayLevel[0]], 
+   StyleBox["\[IndentingNewLine]",
+    FontColor->GrayLevel[0]], 
+   StyleBox["\t",
+    FontColor->GrayLevel[0]], 
+   StyleBox[
+    RowBox[{
+     RowBox[{"Sextic", "[", "x_", "]"}], " ", ":=", " ", 
+     RowBox[{
+      RowBox[{"6", 
+       SuperscriptBox["x", "6"]}], "+", " ", 
+      RowBox[{"Quintic", "[", "x", "]"}]}]}],
+    FontColor->GrayLevel[0]], 
+   StyleBox["\[IndentingNewLine]",
+    FontColor->GrayLevel[0]], 
+   StyleBox["\t",
+    FontColor->GrayLevel[0]], 
+   StyleBox[
+    RowBox[{
+     RowBox[{"Exponential", "[", "x_", "]"}], " ", ":=", " ", 
+     RowBox[{"Exp", "[", "x", "]"}]}],
+    FontColor->GrayLevel[0]], 
+   StyleBox["\[IndentingNewLine]",
+    FontColor->GrayLevel[0]], 
+   StyleBox["\t",
+    FontColor->GrayLevel[0]], 
+   StyleBox[
+    RowBox[{
+     RowBox[{"Logarithm", "[", "x_", "]"}], " ", ":=", " ", 
+     RowBox[{"Log", "[", "x", "]"}]}],
+    FontColor->GrayLevel[0]], 
+   StyleBox[" ",
+    FontColor->GrayLevel[0]], 
+   StyleBox["\[IndentingNewLine]",
+    FontColor->GrayLevel[0]], 
+   StyleBox["\t",
+    FontColor->GrayLevel[0]], 
+   StyleBox[
+    RowBox[{
+     RowBox[{"SquareRoot", "[", "x_", "]"}], " ", ":=", " ", 
+     SuperscriptBox["x", 
+      RowBox[{"1", "/", "2"}]]}],
+    FontColor->GrayLevel[0]], 
+   StyleBox["\[IndentingNewLine]",
+    FontColor->GrayLevel[0]], 
+   StyleBox["\t",
+    FontColor->GrayLevel[0]], 
+   RowBox[{"Manipulate", "[", 
+    RowBox[{
+     RowBox[{"Plot", "[", 
+      RowBox[{
+       RowBox[{"{", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NthMaclaurinSeries", "[", 
+           RowBox[{"g", ",", "o"}], "]"}], "/.", " ", 
+          RowBox[{"x", "\[Rule]", "y"}]}], ",", 
+         RowBox[{
+          RowBox[{"g", "[", "x", "]"}], " ", "/.", " ", 
+          RowBox[{"x", "\[Rule]", "y"}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"y", ",", 
+         RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Blue", ",", "Green"}], "}"}]}], ",", 
+       RowBox[{"AspectRatio", "\[Rule]", 
+        RowBox[{"4", "/", "5"}]}], ",", " ", 
+       RowBox[{"PlotLabel", "\[Rule]", 
+        RowBox[{"g", " ", 
+         RowBox[{"\"\<[x] with order \>\"", "<>", " ", 
+          RowBox[{"ToString", "[", "o", "]"}]}]}]}], " ", ",", 
+       RowBox[{"ImageSize", " ", "\[Rule]", " ", 
+        RowBox[{"{", 
+         RowBox[{"600", ",", "480"}], "}"}]}]}], "]"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"g", ",", "Sin", ",", "\"\<Custom\>\""}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Sin", " ", "\[Rule]", "Sin"}], ",", " ", 
+         RowBox[{"Cos", "\[Rule]", " ", "Cos"}], ",", 
+         RowBox[{"Tan", " ", "\[Rule]", " ", "Tan"}], ",", 
+         RowBox[{"Cot", " ", "\[Rule]", " ", "Cot"}], ",", " ", 
+         RowBox[{"Sec", " ", "\[Rule]", " ", "Sec"}], ",", 
+         RowBox[{"Csc", " ", "\[Rule]", " ", "Csc"}], ",", 
+         RowBox[{"Linear", "\[Rule]", " ", "\"\<Linear\>\""}], " ", ",", 
+         RowBox[{"Quad", "\[Rule]", " ", "\"\<Quadratic\>\""}], " ", ",", " ", 
+         RowBox[{"Cubic", " ", "\[Rule]", " ", "\"\<Cubic\>\""}], ",", " ", 
+         RowBox[{
+         "Quartic", "\[Rule]", " ", 
+          "\"\<Quartic (\!\(\*SuperscriptBox[\(4\), \(th\)]\)power) \>\""}], 
+         ",", " ", 
+         RowBox[{
+         "Quintic", " ", "\[Rule]", " ", 
+          "\"\<Quintic(\!\(\*SuperscriptBox[\(5\), \(th\)]\)power)\>\""}], 
+         ",", " ", 
+         RowBox[{
+         "Sextic", " ", "\[Rule]", " ", 
+          "\"\<Sextic(\!\(\*SuperscriptBox[\(6\), \(th\)]\)power)\>\""}], ",",
+          " ", 
+         RowBox[{"Exponential", " ", "\[Rule]", " ", "\"\<Exponential\>\""}], 
+         ",", " ", 
+         RowBox[{"Logarithm", " ", "\[Rule]", " ", "\"\<Logarithm\>\""}], ",",
+          " ", 
+         RowBox[{"SquareRoot", " ", "\[Rule]", " ", "\"\<SquareRoot\>\""}]}], 
+        "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"o", ",", "10", ",", "\"\<Order\>\""}], "}"}], ",", "1", ",", 
+       "20", ",", "1", ",", 
+       RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}]}], 
+    "]"}]}]}]], "Input",
+ CellChangeTimes->CompressedData["
+1:eJwdzEsowwEAx/E1CpsLZoiJpjxGCMXIaxuSFKU4eORxQFmkzGOzaRyWCPkf
+xsxjGDHPaBKTJu/HQYikWSRiWBxI/r8dvn1uX/9SYW4FlUKhsMlg57evOJHz
+kvIQWt4KiVO6HBqyLxRQmM/qhvOCnl5Ie20bgs2t9XqozDmywsJxv1/IXsmm
+JuFnlDtDT0aECzQUm91h1liCNySqOWGQduIYBz9i7PhQp/bKgHX303lQOdJf
+BLnczRKYmD5YAU2WwyaYyZmRQB+1yWYBT9gBF3Zl47DhjjULLZ8tyzB6KkwP
+tR4/Nhs2tGWppH4HVbVwy3VGArvC/2zWOKiW4MRc4DmUhyZdw0ipzgypCsYT
+pMdaXqC4nfkOPa32X5A40//AW6Y0kkeqyaKlwqrhKwGUsD/qofRouwPmiub7
+4EjIDgG7LvcGoJtofRg+Kj0moLbyZBKWHJfOQsZzgA46x48uwv3NYCO8LwvZ
+h2uKKJvEpVMyn5QpMKZA/hu3GapMFDEk7K4W4M2qbA1q1EUiAWla0Hkj/Afr
+4v5U
+  "],
+ CellLabel->"In[7]:=",ExpressionUUID->"9715a10c-d0b8-40b5-b81f-2398ae390923"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`g$$ = Sin, $CellContext`o$$ = 10, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`g$$], Sin, "Custom"}, {
+      Sin -> Sin, Cos -> Cos, Tan -> Tan, Cot -> Cot, Sec -> Sec, Csc -> 
+       Csc, $CellContext`Linear -> "Linear", $CellContext`Quad -> 
+       "Quadratic", $CellContext`Cubic -> "Cubic", $CellContext`Quartic -> 
+       "Quartic (\!\(\*SuperscriptBox[\(4\), \(th\)]\)power) ", \
+$CellContext`Quintic -> 
+       "Quintic(\!\(\*SuperscriptBox[\(5\), \(th\)]\)power)", \
+$CellContext`Sextic -> 
+       "Sextic(\!\(\*SuperscriptBox[\(6\), \(th\)]\)power)", \
+$CellContext`Exponential -> "Exponential", $CellContext`Logarithm -> 
+       "Logarithm", $CellContext`SquareRoot -> "SquareRoot"}}, {{
+       Hold[$CellContext`o$$], 10, "Order"}, 1, 20, 1}}, Typeset`size$$ = {
+    540., {213., 219.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`g$2648$$ = 
+    False, $CellContext`o$2649$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`g$$ = Sin, $CellContext`o$$ = 10}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`g$$, $CellContext`g$2648$$, False], 
+        Hold[$CellContext`o$$, $CellContext`o$2649$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[{
+         ReplaceAll[
+          $CellContext`NthMaclaurinSeries[$CellContext`g$$, \
+$CellContext`o$$], $CellContext`x -> $CellContext`y], 
+         ReplaceAll[
+          $CellContext`g$$[$CellContext`x], $CellContext`x -> \
+$CellContext`y]}, {$CellContext`y, -5, 5}, PlotStyle -> {Blue, Green}, 
+        AspectRatio -> 4/5, 
+        PlotLabel -> $CellContext`g$$ StringJoin["[x] with order ", 
+           ToString[$CellContext`o$$]], ImageSize -> {600, 480}], 
+      "Specifications" :> {{{$CellContext`g$$, Sin, "Custom"}, {
+         Sin -> Sin, Cos -> Cos, Tan -> Tan, Cot -> Cot, Sec -> Sec, Csc -> 
+          Csc, $CellContext`Linear -> "Linear", $CellContext`Quad -> 
+          "Quadratic", $CellContext`Cubic -> "Cubic", $CellContext`Quartic -> 
+          "Quartic (\!\(\*SuperscriptBox[\(4\), \(th\)]\)power) ", \
+$CellContext`Quintic -> 
+          "Quintic(\!\(\*SuperscriptBox[\(5\), \(th\)]\)power)", \
+$CellContext`Sextic -> 
+          "Sextic(\!\(\*SuperscriptBox[\(6\), \(th\)]\)power)", \
+$CellContext`Exponential -> "Exponential", $CellContext`Logarithm -> 
+          "Logarithm", $CellContext`SquareRoot -> 
+          "SquareRoot"}}, {{$CellContext`o$$, 10, "Order"}, 1, 20, 1, 
+         Appearance -> "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{587., {270., 276.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.7807774971051607`*^9, 3.780777553721147*^9}, 
+   3.780777589662183*^9, {3.780777632526187*^9, 3.7807776440081873`*^9}, 
+   3.7807776937001963`*^9, {3.780778383909792*^9, 3.7807784142318296`*^9}, {
+   3.780778521308832*^9, 3.78077854596283*^9}, 3.780778926577831*^9, {
+   3.78077904404079*^9, 3.7807790657458596`*^9}, 3.7807791925276985`*^9, {
+   3.7807792628956823`*^9, 3.780779272648651*^9}, {3.7807793196416802`*^9, 
+   3.780779329218696*^9}, 3.7807793798126855`*^9, {3.7807794547586875`*^9, 
+   3.7807795104516473`*^9}, 3.780779564424698*^9, 3.780779604087683*^9, {
+   3.7807805508796577`*^9, 3.780780560417684*^9}, 3.7807807857206883`*^9, 
+   3.7807810403046494`*^9, {3.7807814642186885`*^9, 3.7807815266716876`*^9}, 
+   3.780785878136221*^9},
+ CellLabel->"Out[16]=",ExpressionUUID->"b28847bb-a8d0-4558-be41-9271231e7545"]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["From the above graph, we can see that Taylor Approximation works \
+for following functions:",
+  FontSize->18,
+  FontWeight->"Bold"],
+ "\n1. Polynomials -> For polynomials with highest order n, we can take \
+approximation at ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["n", "th"], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "369f4b35-17fb-4f35-8b34-258b15c6f835"],
+ " order, then we get a perfect approximation in the range\n\t",
+ StyleBox["It shows that Taylor Polynomial gives a perfect approximation for \
+polynomial approximation !!",
+  FontColor->RGBColor[1, 0, 0]],
+ "\n2. Sin(x) and Cos(x), in which the approximation overlaps the graph \
+roughly for order more than 12\n3. Exponential function, in which the \
+approximation overlaps the graph roughly for order more than 10\n",
+ StyleBox["But it doesn\[CloseCurlyQuote]t work that well for following \
+functions:",
+  FontSize->18,
+  FontWeight->"Bold"],
+ "\n1. Tan(x),  it approaches the graph gradually when order is less than 10, \
+but hardly move for higher orders.\n2. Sec(x),  it does not approach the \
+graph for any order and there is no such a trend\n3. Cot(x), Csc(x), \
+Logarithm and SquareRoot since all of these functions will get indeterminate \
+expression in their approximation. "
+}], "Text",
+ CellChangeTimes->{{3.780779611739704*^9, 3.7807797594036517`*^9}, {
+  3.7807798650766797`*^9, 3.7807798690876913`*^9}, {3.780779908692705*^9, 
+  3.780779980049657*^9}, {3.7807800217226954`*^9, 3.7807800612176933`*^9}, {
+  3.7807801017066913`*^9, 3.7807802667496967`*^9}, {3.7807802968936996`*^9, 
+  3.780780348935687*^9}, {3.780780380043699*^9, 3.7807804226196923`*^9}, {
+  3.780780455135701*^9, 3.780780531118702*^9}, {3.7807808716686506`*^9, 
+  3.780780914190672*^9}, {3.780781292294713*^9, 
+  3.7807812933746586`*^9}},ExpressionUUID->"9e17ddc6-8f36-4738-859b-\
+14e57fa97949"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+2. Taylor Approximations for multiple polynomials showing \
+it\[CloseCurlyQuote]s perfect performance\
+\>", "Subsection",
+ CellChangeTimes->{{3.7807817276847067`*^9, 3.78078176149469*^9}, {
+  3.7807834150551567`*^9, 
+  3.7807834159071608`*^9}},ExpressionUUID->"2b34c85e-4f10-4dc8-83c9-\
+cc28d04002d3"],
+
+Cell["\<\
+We want to prove our conclusion from last section by drawing graph of random \
+high degree polynomial with random large coefficients as the following.\
+\>", "Text",
+ CellChangeTimes->{{3.7807834241321564`*^9, 
+  3.7807834660341578`*^9}},ExpressionUUID->"ea7f1ad7-a7f8-4244-b3cc-\
+9482cc2f6a9e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Poly", "[", "x_", "]"}], " ", "=", " ", 
+    RowBox[{
+     RowBox[{"131", "x"}], "+", 
+     RowBox[{"132", 
+      SuperscriptBox["x", "2"]}], "+", 
+     RowBox[{"216", 
+      SuperscriptBox["x", "3"]}], "+", 
+     RowBox[{"250", 
+      SuperscriptBox["x", "4"]}], "+", 
+     RowBox[{"330", 
+      SuperscriptBox["x", "5"]}], "+", 
+     RowBox[{"351", 
+      SuperscriptBox["x", "6"]}], "+", 
+     RowBox[{"411", 
+      SuperscriptBox["x", "7"]}], "+", 
+     RowBox[{"451", 
+      SuperscriptBox["x", "8"]}], "+", 
+     RowBox[{"464", 
+      SuperscriptBox["x", "9"]}]}]}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"{", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"NthTaylorSeries", "[", 
+         RowBox[{"g", ",", "o", ",", "a"}], "]"}], "/.", " ", 
+        RowBox[{"x", "\[Rule]", "y"}]}], ",", 
+       RowBox[{
+        RowBox[{"g", "[", "x", "]"}], " ", "/.", " ", 
+        RowBox[{"x", "\[Rule]", "y"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", 
+       RowBox[{"-", "100"}], ",", "100"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Blue", ",", "Green"}], "}"}]}], ",", 
+     RowBox[{"AspectRatio", "\[Rule]", 
+      RowBox[{"4", "/", "5"}]}], ",", " ", 
+     RowBox[{"PlotLabel", "\[Rule]", 
+      RowBox[{"g", " ", 
+       RowBox[{"\"\<[x] with order \>\"", "<>", " ", 
+        RowBox[{"ToString", "[", "o", "]"}]}]}]}], " ", ",", 
+     RowBox[{"ImageSize", " ", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{"600", ",", "480"}], "}"}]}]}], "]"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"g", ",", "Poly", ",", "\"\<Polynomials\>\""}], "}"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"o", ",", "8", ",", "\"\<Order\>\""}], "}"}], ",", "1", ",", 
+     "20", ",", "1", ",", 
+     RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "10", ",", "\"\<a\>\""}], "}"}], ",", "1", ",", "20", 
+     ",", "1", ",", 
+     RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.78078183165765*^9, 3.7807818370086927`*^9}, {
+  3.780781871909692*^9, 3.780782091096715*^9}, {3.7807821213586817`*^9, 
+  3.7807821664566503`*^9}, {3.780782215082702*^9, 3.7807824668356905`*^9}, {
+  3.780782498913704*^9, 3.780782647411704*^9}, {3.780782699236688*^9, 
+  3.7807827016466913`*^9}, {3.780782742204665*^9, 3.7807828022326994`*^9}, {
+  3.7807828450827036`*^9, 3.780783017538023*^9}, {3.780783065301194*^9, 
+  3.780783135235156*^9}, {3.780783173730154*^9, 3.7807831947551565`*^9}, {
+  3.7807832444341574`*^9, 3.7807832988771563`*^9}, {3.780783349850156*^9, 
+  3.7807833816911545`*^9}, {3.780783468813155*^9, 3.7807835324661913`*^9}, {
+  3.7807858872952213`*^9, 3.780785888046226*^9}},
+ CellLabel->"In[19]:=",ExpressionUUID->"13262c8b-0b20-4113-8764-49beebca9002"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = 
+    10, $CellContext`g$$ = $CellContext`Poly, $CellContext`o$$ = 8, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`g$$], $CellContext`Poly, "Polynomials"}}, {{
+       Hold[$CellContext`o$$], 8, "Order"}, 1, 20, 1}, {{
+       Hold[$CellContext`a$$], 10, "a"}, 1, 20, 1}}, Typeset`size$$ = {
+    540., {213., 219.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`o$3329$$ = 
+    0, $CellContext`a$3330$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = 
+        10, $CellContext`g$$ = $CellContext`Poly, $CellContext`o$$ = 8}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`o$$, $CellContext`o$3329$$, 0], 
+        Hold[$CellContext`a$$, $CellContext`a$3330$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[{
+         ReplaceAll[
+          $CellContext`NthTaylorSeries[$CellContext`g$$, $CellContext`o$$, \
+$CellContext`a$$], $CellContext`x -> $CellContext`y], 
+         ReplaceAll[
+          $CellContext`g$$[$CellContext`x], $CellContext`x -> \
+$CellContext`y]}, {$CellContext`y, -100, 100}, PlotStyle -> {Blue, Green}, 
+        AspectRatio -> 4/5, 
+        PlotLabel -> $CellContext`g$$ StringJoin["[x] with order ", 
+           ToString[$CellContext`o$$]], ImageSize -> {600, 480}], 
+      "Specifications" :> {{{$CellContext`g$$, $CellContext`Poly, 
+          "Polynomials"}}, {{$CellContext`o$$, 8, "Order"}, 1, 20, 1, 
+         Appearance -> "Labeled"}, {{$CellContext`a$$, 10, "a"}, 1, 20, 1, 
+         Appearance -> "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{587., {279., 285.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.780782989812995*^9, {3.7807830228609543`*^9, 3.7807830315579925`*^9}, {
+   3.7807831260911937`*^9, 3.7807831384751916`*^9}, 3.7807831973821545`*^9, {
+   3.7807832570371532`*^9, 3.7807833017301574`*^9}, {3.780783358796157*^9, 
+   3.780783383919154*^9}, 3.7807835378401546`*^9, {3.7807858823582516`*^9, 
+   3.780785891068222*^9}},
+ CellLabel->"Out[20]=",ExpressionUUID->"adc1b476-8ba2-4fdf-ad6c-cb1a894dcf23"]
+}, Open  ]],
+
+Cell["\<\
+From the above graph we can see that with approximation of order 9, we can \
+get a perfect approximation using Taylor polynomials regardless of variable a!!
+In general, for polynomials of degree n, we can use aTaylor Expansion of \
+order n to get a perfect approximation for the function.\
+\>", "Text",
+ CellChangeTimes->{{3.780783573469158*^9, 3.7807836878171597`*^9}, {
+  3.7807837651048265`*^9, 
+  3.780783770291832*^9}},ExpressionUUID->"62e1706d-0c45-454e-b4e2-\
+f20c8c4544c6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+3. Taylor Approximations for functions with decent performance showing the \
+difference (mainly trigs) \
+\>", "Subsection",
+ CellChangeTimes->{{3.7807813861006575`*^9, 3.780781444420651*^9}, {
+  3.7807817083927083`*^9, 
+  3.780781708693649*^9}},ExpressionUUID->"b9b42f85-6f36-4b82-9e78-\
+813ada798b21"],
+
+Cell["\<\
+After general discovery and proof for Taylor Expansion as perfect \
+approximation for polynomials, we also want to see how it performs for other \
+functions for which it works.\
+\>", "Text",
+ CellChangeTimes->{{3.7807837779318275`*^9, 
+  3.7807838361208296`*^9}},ExpressionUUID->"84cf9635-153c-48d4-9504-\
+8519224a5f6d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Manipulate", "[", "\n", 
+   RowBox[{
+    RowBox[{"LocatorPane", "[", 
+     RowBox[{
+      RowBox[{"Dynamic", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"a", ",", 
+          RowBox[{"func", "/.", 
+           RowBox[{"x", "\[Rule]", "a"}]}]}], "}"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"a", " ", "=", " ", 
+           RowBox[{"First", "[", "#", "]"}]}], ")"}], "&"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Dynamic", "@", " ", 
+       RowBox[{"Switch", "[", 
+        RowBox[{"view", ",", "\"\<Graphs\>\"", ",", 
+         RowBox[{"Dynamic", "[", 
+          RowBox[{"Plot", "[", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"func", "/.", 
+                RowBox[{"x", "->", "t"}]}], ",", 
+               RowBox[{"Normal", "[", 
+                RowBox[{"Series", "[", 
+                 RowBox[{
+                  RowBox[{"func", " ", "/.", 
+                   RowBox[{"x", " ", "\[Rule]", " ", "t"}]}], ",", " ", 
+                  RowBox[{"{", 
+                   RowBox[{"t", ",", "a", ",", 
+                    RowBox[{"IntegerPart", "[", "Order", "]"}]}], "}"}]}], 
+                 "]"}], "]"}]}], "}"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"t", ",", 
+              RowBox[{
+               RowBox[{"-", "2"}], " ", "Pi"}], ",", 
+              RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
+            RowBox[{"ImageSize", "->", 
+             RowBox[{"{", 
+              RowBox[{"600", ",", "480"}], "}"}]}], ",", 
+            RowBox[{"AspectRatio", "\[Rule]", 
+             RowBox[{"4", "/", "5"}]}], ",", 
+            RowBox[{"PlotRange", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"-", "2"}], " ", "Pi"}], ",", 
+                 RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "5"}], ",", "5"}], "}"}]}], "}"}]}], ",", 
+            RowBox[{"Axes", "->", "True"}], ",", 
+            RowBox[{"PlotStyle", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{"Green", ",", "Blue"}], "}"}]}]}], "]"}], "]"}], ",", 
+         " ", "\"\<Difference\>\"", ",", 
+         RowBox[{"Deploy", "[", 
+          RowBox[{"Dynamic", "[", 
+           RowBox[{"Graphics", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"First", "[", 
+                RowBox[{"Plot", "[", 
+                 RowBox[{
+                  RowBox[{"Evaluate", "[", 
+                   RowBox[{"Abs", "[", 
+                    RowBox[{"func", "-", 
+                    RowBox[{"Normal", "[", 
+                    RowBox[{"Series", "[", 
+                    RowBox[{"func", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"x", ",", "a", ",", 
+                    RowBox[{"IntegerPart", "[", "Order", "]"}]}], "}"}]}], 
+                    "]"}], "]"}]}], "]"}], "]"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"x", ",", 
+                    RowBox[{
+                    RowBox[{"-", "2"}], "\[Pi]"}], ",", 
+                    RowBox[{"2", "\[Pi]"}]}], "}"}], ",", 
+                  RowBox[{"PlotStyle", " ", "\[Rule]", " ", "Orange"}]}], 
+                 "]"}], "]"}], ",", 
+               RowBox[{"Arrow", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"a", ",", "0"}], "}"}], "+", 
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "1"}], "}"}]}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"a", ",", "0"}], "}"}]}], "}"}], "]"}]}], "}"}], 
+             ",", 
+             RowBox[{"ImageSize", "->", 
+              RowBox[{"{", 
+               RowBox[{"600", ",", "480"}], "}"}]}], ",", 
+             RowBox[{"PlotRange", "->", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"-", "2"}], "Pi"}], ",", 
+                  RowBox[{"2", "Pi"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "1"}], ",", "9"}], "}"}]}], "}"}]}], ",", 
+             RowBox[{"Axes", "->", "True"}]}], "]"}], "]"}], "]"}]}], "]"}]}],
+       ",", "\[IndentingNewLine]", "     ", 
+      RowBox[{"Appearance", "->", 
+       RowBox[{"Switch", "[", 
+        RowBox[{
+        "view", ",", "\"\<Graphs\>\"", ",", "Automatic", ",", 
+         "\"\<Difference\>\"", ",", "None"}], "]"}]}]}], "]"}], ",", 
+    "\[IndentingNewLine]", "  ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"a", ",", "0"}], "}"}], ",", 
+      RowBox[{"-", "2"}], ",", "2", ",", 
+      RowBox[{"ControlType", "->", "None"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"func", ",", 
+        RowBox[{
+         RowBox[{"Sin", "[", "x", "]"}], "+", 
+         RowBox[{"Cos", "[", "x", "]"}]}], ",", "\"\<Function\>\""}], "}"}], 
+      ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"Sin", "[", "x", "]"}], "+", 
+          RowBox[{"Cos", "[", "x", "]"}]}], "\[Rule]", 
+         "\"\< Sin [ x ] + Cos [ x ] \>\""}], ",", 
+        RowBox[{
+         RowBox[{"Sin", "[", "x", "]"}], "\[Rule]", "\"\< Sin [ x ] \>\""}], 
+        ",", 
+        RowBox[{
+         RowBox[{"Cos", "[", "x", "]"}], "\[Rule]", "\"\< Cos [ x ] \>\""}], 
+        ",", 
+        RowBox[{
+         RowBox[{"Tan", "[", "x", "]"}], "\[Rule]", "\"\< Tan [ x ] \>\""}], 
+        ",", 
+        RowBox[{
+         RowBox[{"Sec", "[", "x", "]"}], "\[Rule]", "\"\< Sec [ x ] \>\""}]}],
+        "}"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Order", ",", "3", ",", "\"\<Order\>\""}], "}"}], ",", "0", 
+      ",", "20", ",", "1", ",", 
+      RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"view", ",", "\"\<Graphs\>\"", ",", "\"\<view\>\""}], "}"}], 
+      ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Graphs\>\"", ",", "\"\<Difference\>\""}], "}"}]}], 
+     "}"}]}], "]"}], "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{
+  3.780610097582791*^9, {3.7806102714484787`*^9, 3.7806102814309883`*^9}, {
+   3.780610336448962*^9, 3.780610336934498*^9}, {3.78061038150867*^9, 
+   3.7806104040879946`*^9}, {3.7806104450235634`*^9, 
+   3.7806104461953154`*^9}, {3.7806104865339546`*^9, 3.780610487425806*^9}, {
+   3.780610674225733*^9, 3.7806107070287657`*^9}, {3.7807581655105267`*^9, 
+   3.780758172844468*^9}, {3.780758220709066*^9, 3.780758370310063*^9}, {
+   3.780758418602064*^9, 3.7807584757280817`*^9}, {3.78075861139608*^9, 
+   3.7807586126200733`*^9}, {3.7807586677920227`*^9, 
+   3.7807586932460833`*^9}, {3.7807587263680778`*^9, 3.780758928981204*^9}, {
+   3.7807589595742345`*^9, 3.780758979728221*^9}, {3.7807591080232086`*^9, 
+   3.780759231206588*^9}, {3.780759287324535*^9, 3.7807593210185905`*^9}, {
+   3.7807593763665953`*^9, 3.780759381432539*^9}, {3.7807680847080693`*^9, 
+   3.7807682314705973`*^9}, {3.7807683152682247`*^9, 
+   3.7807683398479176`*^9}, {3.7807684696460066`*^9, 
+   3.7807684706518745`*^9}, {3.780781087100692*^9, 3.780781168290661*^9}, {
+   3.780781207970693*^9, 3.7807812222447147`*^9}, 3.78078126377069*^9, {
+   3.7807815365386925`*^9, 3.7807816648236976`*^9}, {3.7807839960698695`*^9, 
+   3.780783999812832*^9}, {3.780785355320829*^9, 3.780785464707863*^9}, {
+   3.7807855426784925`*^9, 3.780785598033497*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"10cdba5a-9661-4b14-ae8d-319a89e859d8"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = 0, $CellContext`func$$ = 
+    Cos[$CellContext`x], Order$$ = 11, $CellContext`view$$ = "Graphs", 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`a$$], 0}, -2, 2}, {{
+       Hold[$CellContext`func$$], Cos[$CellContext`x] + Sin[$CellContext`x], 
+       "Function"}, {
+      Cos[$CellContext`x] + Sin[$CellContext`x] -> " Sin [ x ] + Cos [ x ] ", 
+       Sin[$CellContext`x] -> " Sin [ x ] ", Cos[$CellContext`x] -> 
+       " Cos [ x ] ", Tan[$CellContext`x] -> " Tan [ x ] ", 
+       Sec[$CellContext`x] -> " Sec [ x ] "}}, {{
+       Hold[Order$$], 3, "Order"}, 0, 20, 1}, {{
+       Hold[$CellContext`view$$], "Graphs", "view"}, {
+      "Graphs", "Difference"}}}, Typeset`size$$ = {546., {216., 222.}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`a$3066$$ = 0, $CellContext`func$3067$$ = False, 
+    Order$3068$$ = 0, $CellContext`view$3069$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = 0, $CellContext`func$$ = 
+        Cos[$CellContext`x] + Sin[$CellContext`x], Order$$ = 
+        3, $CellContext`view$$ = "Graphs"}, "ControllerVariables" :> {
+        Hold[$CellContext`a$$, $CellContext`a$3066$$, 0], 
+        Hold[$CellContext`func$$, $CellContext`func$3067$$, False], 
+        Hold[Order$$, Order$3068$$, 0], 
+        Hold[$CellContext`view$$, $CellContext`view$3069$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> LocatorPane[
+        Dynamic[{$CellContext`a$$, 
+          
+          ReplaceAll[$CellContext`func$$, $CellContext`x -> \
+$CellContext`a$$]}, ($CellContext`a$$ = First[#])& ], 
+        Dynamic[
+         Switch[$CellContext`view$$, "Graphs", 
+          Dynamic[
+           Plot[
+            Evaluate[{
+              
+              ReplaceAll[$CellContext`func$$, $CellContext`x -> \
+$CellContext`t], 
+              Normal[
+               Series[
+                
+                ReplaceAll[$CellContext`func$$, $CellContext`x -> \
+$CellContext`t], {$CellContext`t, $CellContext`a$$, 
+                 IntegerPart[Order$$]}]]}], {$CellContext`t, (-2) Pi, 2 Pi}, 
+            ImageSize -> {600, 480}, AspectRatio -> 4/5, 
+            PlotRange -> {{(-2) Pi, 2 Pi}, {-5, 5}}, Axes -> True, 
+            PlotStyle -> {Green, Blue}]], "Difference", 
+          Deploy[
+           Dynamic[
+            Graphics[{
+              First[
+               Plot[
+                Evaluate[
+                 Abs[$CellContext`func$$ - Normal[
+                   
+                   Series[$CellContext`func$$, {$CellContext`x, \
+$CellContext`a$$, 
+                    IntegerPart[Order$$]}]]]], {$CellContext`x, (-2) Pi, 2 
+                 Pi}, PlotStyle -> Orange]], 
+              Arrow[{{$CellContext`a$$, 0} + {0, 1}, {$CellContext`a$$, 0}}]},
+              ImageSize -> {600, 480}, 
+             PlotRange -> {{(-2) Pi, 2 Pi}, {-1, 9}}, Axes -> True]]]]], 
+        Appearance -> 
+        Switch[$CellContext`view$$, "Graphs", Automatic, "Difference", None]],
+       "Specifications" :> {{{$CellContext`a$$, 0}, -2, 2, ControlType -> 
+         None}, {{$CellContext`func$$, Cos[$CellContext`x] + 
+          Sin[$CellContext`x], "Function"}, {
+         Cos[$CellContext`x] + Sin[$CellContext`x] -> 
+          " Sin [ x ] + Cos [ x ] ", Sin[$CellContext`x] -> " Sin [ x ] ", 
+          Cos[$CellContext`x] -> " Cos [ x ] ", Tan[$CellContext`x] -> 
+          " Tan [ x ] ", Sec[$CellContext`x] -> " Sec [ x ] "}}, {{
+         Order$$, 3, "Order"}, 0, 20, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`view$$, "Graphs", "view"}, {
+         "Graphs", "Difference"}}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{593., {281., 287.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.78061026202031*^9, 3.780610284644637*^9}, 
+   3.7806103414688253`*^9, 3.7807581587654667`*^9, 3.780758249451065*^9, {
+   3.7807582905160666`*^9, 3.7807583635540557`*^9}, 3.780758479219069*^9, {
+   3.7807586766710606`*^9, 3.780758696452037*^9}, {3.780758731005028*^9, 
+   3.780758773388076*^9}, {3.7807588121231737`*^9, 3.7807588323141813`*^9}, {
+   3.7807588796702127`*^9, 3.7807589004012237`*^9}, {3.7807589566761737`*^9, 
+   3.7807589832351723`*^9}, {3.7807591443081713`*^9, 3.7807591564382277`*^9}, 
+   3.7807592040575347`*^9, 3.7807592344035325`*^9, {3.780759314247567*^9, 
+   3.7807593244205823`*^9}, 3.7807593852765627`*^9, {3.780768110166792*^9, 
+   3.780768147121214*^9}, 3.78076821131501*^9, {3.780768332834416*^9, 
+   3.7807683440639777`*^9}, {3.780781067569714*^9, 3.7807810988516855`*^9}, {
+   3.780781131087683*^9, 3.7807811726337037`*^9}, {3.7807812114426475`*^9, 
+   3.780781225393647*^9}, 3.7807812688036985`*^9, 3.78078156419265*^9, 
+   3.7807816369776754`*^9, 3.780781667618689*^9, 3.780784003483863*^9, 
+   3.780785500800477*^9, 3.7807856288324375`*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"84e83b72-ede8-41fb-9c4c-b9b80ad702d5"]
+}, Open  ]],
+
+Cell[TextData[StyleBox["\tFrom the above graph we can get same conclusions \
+from \[OpenCurlyDoubleQuote]Graphs\[CloseCurlyDoubleQuote] as part1, but from \
+\[OpenCurlyDoubleQuote]Difference\[CloseCurlyDoubleQuote] we can see that \
+increasing order of approximation does not help improve performance on tan(x) \
+and sec(x) since the shape of the graph does not change for any order and a, \
+but as the order increases, the shape of graph for Sin(x) and Cos(x) gets \
+flatter and flatter, which means the difference becomes less and less, \
+corresponding to what we see from the \[OpenCurlyDoubleQuote]graphs\
+\[CloseCurlyDoubleQuote]. By moving the cursor, we can see the graph of same \
+shape shifts from to left or right which has no impact on the performance of \
+the approximation.",
+ FontSize->16]], "Text",
+ CellChangeTimes->{{3.7807840463968296`*^9, 3.780784358378831*^9}, 
+   3.780784395416871*^9},ExpressionUUID->"de806c93-4e29-4050-9e14-\
+261c974eb6a6"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["3. Math behind the graphs", "Section",
+ CellChangeTimes->{{3.7807844206738977`*^9, 
+  3.7807844449998293`*^9}},ExpressionUUID->"0662ff11-4ffa-4dd1-a6b1-\
+cbe5eed38589"],
+
+Cell[TextData[{
+ StyleBox["Taylor Approximation is actually not only great for polynomials, \
+but for all holomorphic functions, which means the complex derivative ",
+  FontSize->18],
+ "\n\t",
+ StyleBox["f\[CloseCurlyQuote]",
+  IgnoreSpellCheck->True,
+  FontSize->24,
+  FontSlant->"Italic"],
+ StyleBox["(a) = ",
+  FontSize->24,
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["lim", 
+     RowBox[{"x", "\[Rule]", "a"}]], 
+    FractionBox[
+     RowBox[{
+      RowBox[{"f", "(", "x", ")"}], " ", "-", 
+      RowBox[{"f", "(", "a", ")"}]}], 
+     RowBox[{"x", "-", "a"}]]}], TraditionalForm]],
+  FormatType->"TraditionalForm",
+  FontFamily->"Source Sans Pro",ExpressionUUID->
+  "922f6420-7fd7-4cfd-80a7-020dfa3ea671"],
+ "\n",
+ StyleBox["is well-defined for any a in the domain ",
+  FontSize->18],
+ StyleBox["\[DoubleStruckC] \[Rule] \[DoubleStruckC]. ",
+  FontSize->24],
+ StyleBox["As a result, polynomials can be well approximated by being \
+differentiable anywhere in the domain, and for functions like tan(x), sec(x) \
+which are not differentiable anywhere in the domain, it cannot be well \
+approximated by Taylor Polynomials. ",
+  FontSize->18],
+ "\n"
+}], "Text",
+ CellChangeTimes->{{3.780784660797839*^9, 3.780784853762833*^9}, {
+  3.7807849087178836`*^9, 3.7807849110668335`*^9}, {3.780784942631827*^9, 
+  3.780784990691826*^9}, {3.78078502110489*^9, 3.7807851188788385`*^9}, {
+  3.780785157469828*^9, 
+  3.780785249237832*^9}},ExpressionUUID->"e0809d4b-e5c4-4a02-a0ec-\
+b4bbd322c327"],
+
+Cell[BoxData["\[IndentingNewLine]"], "Input",
+ CellChangeTimes->{
+  3.780610262923506*^9},ExpressionUUID->"d988d642-9d96-42e1-b9f4-\
+c601fe944937"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1280, 637},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+SpellingDictionaries->{"CorrectWords"->{"Sijing"}},
+Magnification:>0.9 Inherited,
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 610, 19, 148, "Title",ExpressionUUID->"e4a487ba-7f19-43b8-81cd-2c9c3ce3c7a3"],
+Cell[CellGroupData[{
+Cell[1215, 45, 162, 3, 60, "Section",ExpressionUUID->"2955d739-2d7f-404e-b768-f58ed8e47f2a"],
+Cell[1380, 50, 5830, 192, 165, "Text",ExpressionUUID->"49cb1325-b25f-4d0d-a607-ed10a2525564"],
+Cell[7213, 244, 973, 26, 26, "Input",ExpressionUUID->"7fe24bb6-945e-4f08-ba44-a078cddafdd5"],
+Cell[8189, 272, 624, 17, 31, "Text",ExpressionUUID->"ce9d2f6f-9a77-4aef-9643-160e1a3670aa"],
+Cell[8816, 291, 957, 25, 45, "Input",ExpressionUUID->"af0695ab-2f51-43df-b7f0-02b271fa61a3"],
+Cell[9776, 318, 752, 19, 31, "Text",ExpressionUUID->"0b56c496-c769-48da-8014-fc678a1db635"],
+Cell[10531, 339, 929, 23, 45, "Input",ExpressionUUID->"0a270b1d-8d48-4b5e-8fd8-3dc861298589"],
+Cell[11463, 364, 617, 11, 52, "Text",ExpressionUUID->"6c67086c-95b3-4053-a7cf-3e34ee494e68"],
+Cell[CellGroupData[{
+Cell[12105, 379, 1790, 37, 45, "Input",ExpressionUUID->"bb256ca7-390f-47e0-97ec-a0be6c697972"],
+Cell[13898, 418, 2656, 49, 164, "Output",ExpressionUUID->"8e76a463-5b06-4fce-a603-697a8458276c"]
+}, Open  ]],
+Cell[16569, 470, 275, 4, 31, "Text",ExpressionUUID->"1b4bb76f-2497-4214-a94e-3492c90852de"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16881, 479, 345, 5, 60, "Section",ExpressionUUID->"d3f67c7c-6043-4e77-aedf-781fd7ddf375"],
+Cell[CellGroupData[{
+Cell[17251, 488, 230, 5, 48, "Subsection",ExpressionUUID->"1c3032ed-9816-499c-96c8-f466b3176e38"],
+Cell[17484, 495, 595, 9, 31, "Text",ExpressionUUID->"d550c85c-798f-44fe-9081-89b824a0f5d5"],
+Cell[CellGroupData[{
+Cell[18104, 508, 6576, 186, 283, "Input",ExpressionUUID->"9715a10c-d0b8-40b5-b81f-2398ae390923"],
+Cell[24683, 696, 4325, 77, 564, "Output",ExpressionUUID->"b28847bb-a8d0-4558-be41-9271231e7545"]
+}, Open  ]],
+Cell[29023, 776, 1901, 37, 201, "Text",ExpressionUUID->"9e17ddc6-8f36-4738-859b-14e57fa97949"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30961, 818, 311, 7, 48, "Subsection",ExpressionUUID->"2b34c85e-4f10-4dc8-83c9-cc28d04002d3"],
+Cell[31275, 827, 304, 6, 31, "Text",ExpressionUUID->"ea7f1ad7-a7f8-4244-b3cc-9482cc2f6a9e"],
+Cell[CellGroupData[{
+Cell[31604, 837, 3061, 78, 83, "Input",ExpressionUUID->"13262c8b-0b20-4113-8764-49beebca9002"],
+Cell[34668, 917, 2965, 56, 582, "Output",ExpressionUUID->"adc1b476-8ba2-4fdf-ad6c-cb1a894dcf23"]
+}, Open  ]],
+Cell[37648, 976, 491, 9, 52, "Text",ExpressionUUID->"62e1706d-0c45-454e-b4e2-f20c8c4544c6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[38176, 990, 312, 7, 48, "Subsection",ExpressionUUID->"b9b42f85-6f36-4b82-9e78-813ada798b21"],
+Cell[38491, 999, 330, 7, 31, "Text",ExpressionUUID->"84cf9635-153c-48d4-9504-8519224a5f6d"],
+Cell[CellGroupData[{
+Cell[38846, 1010, 7846, 189, 225, "Input",ExpressionUUID->"10cdba5a-9661-4b14-ae8d-319a89e859d8"],
+Cell[46695, 1201, 5746, 109, 586, "Output",ExpressionUUID->"84e83b72-ede8-41fb-9c4c-b9b80ad702d5"]
+}, Open  ]],
+Cell[52456, 1313, 964, 14, 94, "Text",ExpressionUUID->"de806c93-4e29-4050-9e14-261c974eb6a6"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[53469, 1333, 174, 3, 60, "Section",ExpressionUUID->"0662ff11-4ffa-4dd1-a6b1-cbe5eed38589"],
+Cell[53646, 1338, 1520, 42, 140, "Text",ExpressionUUID->"e0809d4b-e5c4-4a02-a0ec-b4bbd322c327"],
+Cell[55169, 1382, 147, 3, 45, "Input",ExpressionUUID->"d988d642-9d96-42e1-b9f4-c601fe944937"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
